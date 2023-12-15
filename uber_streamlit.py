@@ -50,9 +50,12 @@ st.bar_chart(data)
 
 f'## Nástupy na mape zo dňa {date}'
 
-hour_to_filter = st.slider('Vyber hodinu', 0, 23, 12)
+hour_to_filter = st.slider('**Vyber hodinu:**', 0, 23, 12)
 
-st.map(df_filtered, 
+filter_hour = df_filtered['dt'].dt.hour == hour_to_filter
+df_hour = df_filtered.loc[ filter_hour, : ]
+
+st.map(df_hour, 
        latitude='pickup_latitude', 
        longitude='pickup_longitude',
        # zoom=4
