@@ -55,6 +55,9 @@ hour_to_filter = st.slider('**Vyber hodinu:**', 0, 23, 12)
 filter_hour = df_filtered['dt'].dt.hour == hour_to_filter
 df_hour = df_filtered.loc[ filter_hour, : ]
 
+count = df_hour['dt'].count()
+f'Počet jázd: **{count}**'
+
 st.map(df_hour,
        latitude='pickup_latitude', 
        longitude='pickup_longitude',
