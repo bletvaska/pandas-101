@@ -14,14 +14,14 @@ def load_data():
     data_load_state.markdown('Nahrávam dataset... Nahraté (z cache).')
     return df
 
-st.title('Uber Pickups in NYC')
+'# Uber Pickups in NYC'
 st.image('images/uber.jpg')
 
-st.markdown('Pozrieme sa bližšie na jazdy spoločnosti [Uber](https://www.uber.com).')
+'Pozrieme sa bližšie na jazdy spoločnosti [Uber](https://www.uber.com).'
 
 'Dataset, ktorý použijeme na túto aplikáciu si je možné stiahnuť z portálu [Kaggle](https://www.kaggle.com).'
 
-st.header('Nahratie datasetu')
+'## Nahratie datasetu'
 
 df = load_data()
 
@@ -55,7 +55,7 @@ hour_to_filter = st.slider('**Vyber hodinu:**', 0, 23, 12)
 filter_hour = df_filtered['dt'].dt.hour == hour_to_filter
 df_hour = df_filtered.loc[ filter_hour, : ]
 
-st.map(df_hour, 
+st.map(df_hour,
        latitude='pickup_latitude', 
        longitude='pickup_longitude',
        # zoom=4
