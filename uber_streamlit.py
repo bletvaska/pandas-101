@@ -1,3 +1,5 @@
+import datetime
+
 import streamlit as st
 import pandas as pd
 
@@ -29,8 +31,9 @@ if st.checkbox('Zobraziť dáta') is True:
 
 '## Prehľad jázd za deň'
 
-day = 1
-month = 1
+date = st.date_input('**Vyber dátum:**', datetime.date(2015, 1, 1))
+day = 12
+month = 2
 year = 2014
 
 filter_date = (
@@ -38,5 +41,10 @@ filter_date = (
     & (df['dt'].dt.month == month)
     & (df['dt'].dt.day == day)
 )
+
+df_filtered = df.loc[ filter_date, : ]
+
+data = df_filtered.groupby( df_filtered['dt'].dt.hour )['passengers'].count()
+st.bar_chart(data)
 
 
